@@ -1,32 +1,82 @@
-#include "SDL.h"
-#include "Game.h"
+
+#include <iostream>
+#include <string>
+#include "Flags.h"
+#include "sdl2.h"
+#include "LineDraw.h"
+
+#include "CInscribedTriangle.h"
+
+using namespace Utils;
+
+const int SCREEN_WIDTH = 1344, SCREEN_HEIGHT = 756;
+
+GameFlags flags;
+
+MousePosLog mousePos;
 
 
-
-Game* game = nullptr;
 
 int main(int argc, char* argv[])
 {
-
-	game = new Game(); 
-	game->init("Game Title", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, true);
-
-	while (game->running())
+	try
 	{
-		game->handleEvents();
-		game->update();
-		game->render();
+		sdl2::App app;
+		sdl2::Window window("main", SCREEN_WIDTH, SCREEN_HEIGHT);
+		sdl2::Renderer renderer(window);
 
+		/*LineDraw lineDraw{ renderer };*/
+		//CircleDraw circle{ renderer, 50, LDPoint{ 200, 200 } };
+		CInscribedTriangle circle{ renderer, 50, LDPoint{ 200, 200 } };
+
+
+		SDL_Event e;
+		while (!flags.isSet(quit))
+		{
+			while (SDL_PollEvent(&e) != 0)
+			{
+				if (e.type == SDL_QUIT)
+				{
+					flags.setFlag(quit);
+				}
+				
+				else 
+				{
+					/*lineDraw.handleEvent(&e);*/
+
+					circle.handleEvent(&e);
+				}
+			}
+
+			renderer.clear();
+
+			//if (lineDraw.points.size() > 0)
+			//	lineDraw.show();
+
+			//if (lineDraw.lines.size() > 0)
+			//	lineDraw.draw();
+			
+
+			circle.draw();
+
+			//mousePos.update();
+			//if (circle.isInsidePerimeter(mousePos.current))
+			//	circle.drawFill(SDL_Color{0, 255, 0});
+
+			//else
+			//	circle.drawFill(SDL_Color{ 255, 0, 0 });
+
+			
+
+			renderer.present();
+
+		}
 	}
 
-
-	game->clean();
-
-
-
-
-
-
+	catch (std::runtime_error& e)
+	{
+		std::cout << e.what() << '\n';
+	}
 
 
 	return 0;
