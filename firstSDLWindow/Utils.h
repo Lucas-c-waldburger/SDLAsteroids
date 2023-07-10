@@ -10,6 +10,8 @@
 namespace Utils
 {
 
+	const int SCREEN_WIDTH = 1344, SCREEN_HEIGHT = 756;
+
 	struct LDPoint : public SDL_Point
 	{
 		LDPoint() : SDL_Point() {};
@@ -23,6 +25,7 @@ namespace Utils
 		bool operator>(const LDPoint& other) const { return this->x > other.x && this->y > other.y; }
 		
 		LDPoint operator-(LDPoint& other) { return LDPoint{ this->x - other.x, this->y - other.y }; }
+		LDPoint operator+(LDPoint& other) { return LDPoint{ this->x + other.x, this->y + other.y }; }
 
 		void operator+=(LDPoint& other) { this->x += other.x; this->y += other.y; };
 
@@ -122,6 +125,10 @@ namespace Utils
 			return linesIntersect(line1, line2);
 		}
 	};
+
+
+
+
 
 };
 

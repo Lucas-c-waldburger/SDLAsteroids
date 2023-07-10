@@ -4,12 +4,10 @@
 #include "Flags.h"
 #include "sdl2.h"
 #include "LineDraw.h"
-
 #include "CInscribedTriangle.h"
 
-using namespace Utils;
+//using namespace Utils;
 
-const int SCREEN_WIDTH = 1344, SCREEN_HEIGHT = 756;
 
 GameFlags flags;
 
@@ -40,13 +38,17 @@ int main(int argc, char* argv[])
 					flags.setFlag(quit);
 				}
 				
-				else 
-				{
-					/*lineDraw.handleEvent(&e);*/
+				//else 
+				//{
+				//	/*lineDraw.handleEvent(&e);*/
 
-					circle.handleEvent(&e);
-				}
+				//	circle.handleEvent(&e);
+				//}
 			}
+
+			const Uint8* keyStates = SDL_GetKeyboardState(nullptr);
+			circle.handleKeyStates(keyStates);
+
 
 			renderer.clear();
 

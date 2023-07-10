@@ -18,6 +18,7 @@ public:
 
 
 	void move(LDPoint amount);
+	void recenter();
 	void resize(int newRadius);
 
 	void draw();
@@ -28,6 +29,7 @@ public:
     void findPerimeterPoints();
 
 	bool isInsidePerimeter(LDPoint testPoint);
+
 
     void logPerimeterPoints();
 
