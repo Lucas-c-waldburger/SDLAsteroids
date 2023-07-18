@@ -141,6 +141,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CInscribedTriangle.cpp" />
     <ClCompile Include="CircleDraw.cpp" />
     <ClCompile Include="LineDraw.cpp" />
@@ -149,6 +150,7 @@
     <ClCompile Include="sdl2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="CInscribedTriangle.h" />
     <ClInclude Include="CircleDraw.h" />
     <ClInclude Include="Flags.h" />

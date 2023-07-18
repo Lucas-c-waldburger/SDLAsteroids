@@ -1,3 +1,6 @@
+// ship derives from cinscribed triangle
+	// has vector of bullets 
+
 
 #include <iostream>
 #include <string>

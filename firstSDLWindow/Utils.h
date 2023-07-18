@@ -17,6 +17,7 @@ namespace Utils
 		LDPoint() : SDL_Point() {};
 		LDPoint(int xPos, int yPos) : SDL_Point() { x = xPos; y = yPos; };
 		LDPoint(const LDPoint& other) { x = other.x; y = other.y; };
+		LDPoint(const LDPoint& rhs) { if (rhs == this) }
 
 		bool operator==(const LDPoint& other) const { return this->x == other.x && this->y == other.y; }
 		bool operator!=(const LDPoint& other) const { return this->x != other.x || this->y != other.y; }

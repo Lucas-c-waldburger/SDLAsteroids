@@ -51,9 +51,9 @@ void CInscribedTriangle::goForward()
 
 	LDPoint head = perimeterPoints[trianglePointIndexes[0]];
 
-	std::cout << "HEAD: " << head << "\nFORWARD PATH POINTS:\n";
-	for (auto& p : forwardPathPoints)
-		std::cout << '\t' << p << '\n';
+	//std::cout << "HEAD: " << head << "\nFORWARD PATH POINTS:\n";
+	//for (auto& p : forwardPathPoints)
+	//	std::cout << '\t' << p << '\n';
 	//if (head == forwardPathPoints.back())
 	//	return;
 
