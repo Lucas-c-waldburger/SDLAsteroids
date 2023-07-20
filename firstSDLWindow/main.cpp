@@ -64,6 +64,9 @@ int main(int argc, char* argv[])
 
 			circle.draw();
 
+
+			circle.bulletGenerator.drawAll();
+
 			//mousePos.update();
 			//if (circle.isInsidePerimeter(mousePos.current))
 			//	circle.drawFill(SDL_Color{0, 255, 0});

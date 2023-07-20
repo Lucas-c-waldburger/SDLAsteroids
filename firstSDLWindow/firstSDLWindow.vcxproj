@@ -148,6 +148,7 @@
     <ClCompile Include="LTexture.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="sdl2.cpp" />
+    <ClCompile Include="Ship.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
@@ -158,6 +159,7 @@
     <ClInclude Include="LineDraw.h" />
     <ClInclude Include="LTexture.h" />
     <ClInclude Include="sdl2.h" />
+    <ClInclude Include="Ship.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>

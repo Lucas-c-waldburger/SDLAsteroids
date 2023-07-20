@@ -1,5 +1,6 @@
 #pragma once
 #include "CircleDraw.h"
+#include "Bullet.h"
 
 const int PIXELS_MOVE_PER_FRAME = 3, ROTATION_RATE = 2;
 
@@ -8,18 +9,9 @@ class CInscribedTriangle : public CircleDraw
 {
 public:
 
-	struct Bullet
-	{
-		Bullet(std::vector<LDPoint>& forwardPathPoints);
-
-		std::pair<LDPoint, LDPoint> linePoints;
-		std::vector<LDPoint>& forwardPathPointsRef;
-
-		bool isFiring;
-		int bulletLength;
-	};
-
 	CInscribedTriangle(SDL_Renderer* renderer, int r, LDPoint c);
+
+	BulletGenerator bulletGenerator;
 
 	void draw();
 	void rotate(int amount);

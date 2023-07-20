@@ -1,7 +1,7 @@
 #include "CInscribedTriangle.h"
 #include <cmath>
 
-CInscribedTriangle::CInscribedTriangle(SDL_Renderer* renderer, int r, LDPoint c) : CircleDraw(renderer, r, c), facingNewDirection(false), currentForwardPathIndex(1)
+CInscribedTriangle::CInscribedTriangle(SDL_Renderer* renderer, int r, LDPoint c) : CircleDraw(renderer, r, c), facingNewDirection(false), currentForwardPathIndex(1), bulletGenerator(BulletGenerator{ rendererCpy })
 {
 	sortPerimeterPoints();
 	recenter();
@@ -11,6 +11,7 @@ CInscribedTriangle::CInscribedTriangle(SDL_Renderer* renderer, int r, LDPoint c)
 	updateTranglePoints();
 
 	generateForwardPathPoints();
+
 }
 
 void CInscribedTriangle::draw()
@@ -38,16 +39,17 @@ void CInscribedTriangle::rotate(int amount)
 	}
 
 	facingNewDirection = true;
+	generateForwardPathPoints();
 }
 
 
 void CInscribedTriangle::goForward()
 {
-	if (facingNewDirection)
-	{
-		generateForwardPathPoints();
-		facingNewDirection = false;
-	}
+	//if (facingNewDirection)
+	//{
+	//	generateForwardPathPoints();
+	//	facingNewDirection = false;
+	//}
 
 	LDPoint head = perimeterPoints[trianglePointIndexes[0]];
 
@@ -146,37 +148,22 @@ bool CInscribedTriangle::pointWithinBounds(LDPoint& p)
 }
 
 
-void CInscribedTriangle::handleEvent(SDL_Event* e)
-{
-	if (e->type == SDL_KEYDOWN)
-	{
-		switch (e->key.keysym.sym)
-		{
-			case SDLK_a:
-				rotate(2);
-				break;
-
-			case SDLK_d:
-				rotate(-2);
-				break;
-		}
-
-		if (e->key.keysym.sym == SDLK_w)
-			goForward();
-	}
-}
-
 void CInscribedTriangle::handleKeyStates(const Uint8*& keystates)
 {
 	if (keystates[SDL_SCANCODE_A])
 		rotate(2);
 
-	if (keystates[SDL_SCANCODE_D])
+	else if (keystates[SDL_SCANCODE_D])
 		rotate(-2);
 
 	if (keystates[SDL_SCANCODE_W])
 		goForward();
 
+	if (keystates[SDL_SCANCODE_SPACE])
+	{
+		//generateForwardPathPoints();
+		bulletGenerator.makeBullet(forwardPathPoints);
+	}
 }
 
 void CInscribedTriangle::updateTranglePoints()
@@ -187,7 +174,3 @@ void CInscribedTriangle::updateTranglePoints()
 	trianglePoints[3] = perimeterPoints[trianglePointIndexes[0]];
 }
 
-CInscribedTriangle::Bullet::Bullet(std::vector<LDPoint>& forwardPathPoints) : forwardPathPointsRef(forwardPathPoints), isFiring(false), bulletLength(3)
-{
-
-}
