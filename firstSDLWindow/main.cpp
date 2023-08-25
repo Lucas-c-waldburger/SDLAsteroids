@@ -1,91 +1,77 @@
-// ship derives from cinscribed triangle
-	// has vector of bullets 
-
-
 #include <iostream>
 #include <string>
 #include "Flags.h"
 #include "sdl2.h"
-#include "LineDraw.h"
-#include "CInscribedTriangle.h"
-
-//using namespace Utils;
+#include "Ship.h"
+#include "Asteroid.h"
+#include "ObjectDestructionManager.h"
+#include "DifficultyManager.h"
+#include "BackgroundDecorations.h"
 
 
 GameFlags flags;
 
-MousePosLog mousePos;
-
-
-
 int main(int argc, char* argv[])
 {
-	try
-	{
-		sdl2::App app;
-		sdl2::Window window("main", SCREEN_WIDTH, SCREEN_HEIGHT);
-		sdl2::Renderer renderer(window);
+    try
+    {
 
-		/*LineDraw lineDraw{ renderer };*/
-		//CircleDraw circle{ renderer, 50, LDPoint{ 200, 200 } };
-		CInscribedTriangle circle{ renderer, 50, LDPoint{ 200, 200 } };
+        sdl2::App app;
+        sdl2::Window window("main", SCREEN_WIDTH, SCREEN_HEIGHT);
+        sdl2::Renderer renderer(window);
 
+        Ship ship{ renderer, 38, LDPoint{ SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 } };
+        AsteroidGenerator asteroidGenerator(renderer);
+        ObjectDestructionManager objectDestructionManager;
+        ScoreDisplay::ScoreBoard scoreBoard(renderer);
+        BackgroundDecorations::StarMaker starMaker(renderer, 18);
+        DifficultyManager difficultyManager{};
 
-		SDL_Event e;
-		while (!flags.isSet(quit))
-		{
-			while (SDL_PollEvent(&e) != 0)
-			{
-				if (e.type == SDL_QUIT)
-				{
-					flags.setFlag(quit);
-				}
-				
-				//else 
-				//{
-				//	/*lineDraw.handleEvent(&e);*/
+        SDL_Event e;
+        while (!flags.isSet(quit))
+        {
+            while (SDL_PollEvent(&e) != 0)
+            {
+                if (e.type == SDL_QUIT)
+                {
+                    flags.setFlag(quit);
+                }
+            }
 
-				//	circle.handleEvent(&e);
-				//}
-			}
+            objectDestructionManager.resolveAll(ship, asteroidGenerator);
+            if (ship.markedDestroy)
+            {
+                flags.setFlag(quit);
+            }
 
-			const Uint8* keyStates = SDL_GetKeyboardState(nullptr);
-			circle.handleKeyStates(keyStates);
+            else
+            {
+                scoreBoard.setTotalScore(asteroidGenerator.getNumDestroyed());
+                difficultyManager.handleDifficulty(asteroidGenerator, scoreBoard);
 
+                const Uint8* keyStates = SDL_GetKeyboardState(nullptr);
+                ship.handleKeyStates(keyStates);
 
-			renderer.clear();
+                renderer.clear();
 
-			//if (lineDraw.points.size() > 0)
-			//	lineDraw.show();
-
-			//if (lineDraw.lines.size() > 0)
-			//	lineDraw.draw();
-			
-
-			circle.draw();
-
-
-			circle.bulletGenerator.drawAll();
-
-			//mousePos.update();
-			//if (circle.isInsidePerimeter(mousePos.current))
-			//	circle.drawFill(SDL_Color{0, 255, 0});
-
-			//else
-			//	circle.drawFill(SDL_Color{ 255, 0, 0 });
-
-			
-
-			renderer.present();
-
-		}
-	}
-
-	catch (std::runtime_error& e)
-	{
-		std::cout << e.what() << '\n';
-	}
+                starMaker.drawAll();
+                ship.draw();
+                ship.bulletGenerator.drawAll();
+                asteroidGenerator.drawAll();
+                scoreBoard.draw();
 
 
-	return 0;
+
+                renderer.present();
+            }
+        }
+    }
+
+    catch (std::runtime_error& e)
+    {
+        std::cout << e.what() << '\n';
+    }
+
+
+    return 0;
 }

@@ -24,6 +24,7 @@
     <ProjectGuid>{88049a9a-f7e5-40cf-9dcd-a7dc69466bdb}</ProjectGuid>
     <RootNamespace>firstSDLWindow</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>SDL_Asteroids</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -113,6 +114,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Dev\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,6 +132,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Dev\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -141,31 +144,38 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Asteroid.cpp" />
+    <ClCompile Include="BackgroundDecorations.cpp" />
     <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="CInscribedTriangle.cpp" />
+    <ClCompile Include="CInscribedShape.cpp" />
     <ClCompile Include="CircleDraw.cpp" />
-    <ClCompile Include="LineDraw.cpp" />
-    <ClCompile Include="LTexture.cpp" />
+    <ClCompile Include="DifficultyManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PathPoints.cpp" />
+    <ClCompile Include="ScoreDisplay.cpp" />
     <ClCompile Include="sdl2.cpp" />
     <ClCompile Include="Ship.cpp" />
+    <ClCompile Include="ObjectDestructionManager.cpp" />
+    <ClCompile Include="Time.cpp" />
+    <ClCompile Include="VelocityTime.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Asteroid.h" />
+    <ClInclude Include="BackgroundDecorations.h" />
     <ClInclude Include="Bullet.h" />
-    <ClInclude Include="CInscribedTriangle.h" />
+    <ClInclude Include="CInscribedShape.h" />
     <ClInclude Include="CircleDraw.h" />
+    <ClInclude Include="DifficultyManager.h" />
     <ClInclude Include="Flags.h" />
-    <ClInclude Include="App.h" />
     <ClInclude Include="LineDraw.h" />
-    <ClInclude Include="LTexture.h" />
+    <ClInclude Include="PathPoints.h" />
+    <ClInclude Include="ScoreDisplay.h" />
     <ClInclude Include="sdl2.h" />
     <ClInclude Include="Ship.h" />
+    <ClInclude Include="ObjectDestructionManager.h" />
+    <ClInclude Include="Time.h" />
     <ClInclude Include="Utils.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Font Include="..\..\..\..\Downloads\watatsuki-tech-sans-font\WatatsukiTechSans-GOJxA.ttf" />
-    <Font Include="style1.otf" />
-    <Font Include="Twobit-OK2A.ttf" />
+    <ClInclude Include="VelocityTime.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="storage.txt" />

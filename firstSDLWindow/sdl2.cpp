@@ -1,5 +1,4 @@
 #include "sdl2.h"
-#include <stdexcept>
 
 // APP
 sdl2::App::App()
@@ -47,6 +46,8 @@ sdl2::Renderer::Renderer(SDL_Window* win)
     {
         throw std::runtime_error(SDL_GetError());
     }
+
+    SDL_SetRenderDrawBlendMode(pRenderer, SDL_BLENDMODE_BLEND);
 }
 
 sdl2::Renderer::~Renderer()
@@ -56,7 +57,7 @@ sdl2::Renderer::~Renderer()
 
 void sdl2::Renderer::clear()
 {
-    SDL_SetRenderDrawColor(pRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+    SDL_SetRenderDrawColor(pRenderer, 0, 0, 0, 0xFF);
     SDL_RenderClear(pRenderer);
 }
 
@@ -69,5 +70,3 @@ sdl2::Renderer::operator SDL_Renderer* ()
 {
     return pRenderer;
 }
-
-

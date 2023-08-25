@@ -33,7 +33,7 @@ void CircleDraw::resize(int newRadius)
 
 void CircleDraw::draw()
 {
-    SDL_SetRenderDrawColor(rendererCpy, 0, 0, 0, 0xFF);
+    SDL_SetRenderDrawColor(rendererCpy, 0xFF, 0xFF, 0xFF, 0xFF);
     SDL_RenderDrawPoints(rendererCpy, &perimeterPoints[0], perimeterPoints.size());
 }
 
