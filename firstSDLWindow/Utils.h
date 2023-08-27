@@ -47,7 +47,6 @@ namespace Utils
 
     struct LinePoints
     {
-
         static LDPoint extendLine(const LDPoint& A, const LDPoint& B, int distance)
         {
             LDPoint C;
@@ -60,13 +59,11 @@ namespace Utils
             return C;
         }
 
-
         static bool pointWithinScreenBounds(const LDPoint& p, int screenWidthMin = 0, int screenWidthMax = SCREEN_WIDTH, int screenHeightMin = 0, int screenHeightMax = SCREEN_HEIGHT)
         {
             return ((p.x >= screenWidthMin && p.x <= screenWidthMax) &&
                 (p.y >= screenHeightMin && p.y <= screenHeightMax));
         }
-
 
         static void generateLinePointsToEdge(const LDPoint& A, const LDPoint& B, std::vector<LDPoint>& pathPoints, int distanceBetweenPixels = 2)
         {

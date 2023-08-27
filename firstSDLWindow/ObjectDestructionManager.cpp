@@ -12,13 +12,15 @@ void ObjectDestructionManager::resolveAll(Ship& ship, AsteroidGenerator& asteroi
     resolveBulletCollisions(ship.bulletGenerator, asteroidGenerator);
 }
 
+
 bool ObjectDestructionManager::collided(Bullet& bullet, Asteroid& asteroid)
 {
     return asteroid.isInsidePerimeter(LDPoint{ bullet.x, bullet.y });
 }
 
+
 template <class T>
-int ObjectDestructionManager::checkExpiration(std::vector<T>& objVec) // SEE IF WE CAN RETURN A BOOL TO DETERMINE WHETHER TO RUN ERASE IF ANY WERE MARKED
+int ObjectDestructionManager::checkExpiration(std::vector<T>& objVec)
 {
     int numToErase = 0;
 
@@ -33,6 +35,7 @@ int ObjectDestructionManager::checkExpiration(std::vector<T>& objVec) // SEE IF 
 
     return numToErase;
 }
+
 
 template <class T>
 void ObjectDestructionManager::eraseMarked(std::vector<T>& objVec)
@@ -77,7 +80,7 @@ int ObjectDestructionManager::checkBulletCollisions(BulletGenerator& bulletGener
     return numToErase;
 }
 
-// DONT NEED TO ADD TO SCORE WITH EXPIRATIONS!
+
 void ObjectDestructionManager::resolveExpirations(BulletGenerator& bulletGenerator, AsteroidGenerator& asteroidGenerator)
 {
     int numBulletsToErase = checkExpiration<Bullet>(bulletGenerator.bullets);

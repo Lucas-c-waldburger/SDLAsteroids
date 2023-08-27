@@ -7,20 +7,24 @@ CInscribedShape::CInscribedShape(SDL_Renderer* renderer, int r, LDPoint c, int n
     init();
 }
 
+
 CInscribedShape::~CInscribedShape()
 {
     rendererCpy = nullptr;
 }
+
 
 const std::vector<int>& CInscribedShape::getVertexIndecies()
 {
     return vertexIndecies;
 }
 
+
 const std::vector<LDPoint>& CInscribedShape::getVertexPoints()
 {
     return vertexPoints;
 }
+
 
 void CInscribedShape::init()
 {
@@ -41,17 +45,17 @@ void CInscribedShape::init()
     updateVertexPoints();
 }
 
+
 void CInscribedShape::move(LDPoint newP)
 {
     CircleDraw::move(newP);
-
     std::for_each(nonSequentialPerimeterPoints.begin(), nonSequentialPerimeterPoints.end(), [&newP](LDPoint& p) { p += newP; });
 }
+
 
 void CInscribedShape::recenter()
 {
     CircleDraw::recenter();
-
     std::for_each(nonSequentialPerimeterPoints.begin(), nonSequentialPerimeterPoints.end(), [&](LDPoint& p) { p += center; });
 }
 
@@ -62,6 +66,7 @@ void CInscribedShape::draw()
     updateVertexPoints(); // MOVE TO ROTATE?
     SDL_RenderDrawLines(rendererCpy, &vertexPoints[0], vertexPoints.size());
 }
+
 
 void CInscribedShape::rotate(int amount)
 {
@@ -78,6 +83,7 @@ void CInscribedShape::rotate(int amount)
         vi = projected;
     }
 }
+
 
 bool CInscribedShape::isInsidePerimeter(LDPoint testPoint)
 {
@@ -144,8 +150,8 @@ void CInscribedShape::assignVertexIndexes()
         vertexIndecies.push_back(static_cast<int>(ppSize * currentSubDivision));
         currentSubDivision += smallestSubDivison;
     }
-
 }
+
 
 void CInscribedShape::updateVertexPoints()
 {
@@ -159,6 +165,7 @@ void CInscribedShape::updateVertexPoints()
     vertexPoints.push_back(perimeterPoints[vertexIndecies[0]]);
 
 }
+
 
 void CInscribedShape::handleKeyStates(const Uint8*& keystates)
 {

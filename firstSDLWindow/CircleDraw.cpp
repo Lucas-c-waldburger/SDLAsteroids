@@ -3,25 +3,27 @@
 CircleDraw::CircleDraw(SDL_Renderer* renderer, int r, LDPoint c) : rendererCpy(renderer), radius(r), center(c)
 {
     findPerimeterPoints();
-    /*move(center);*/
 }
+
 
 CircleDraw::~CircleDraw()
 {
     rendererCpy = nullptr;
 }
 
-// FIX SO IT TAKES RELATIVE POSIITON INTO ACCOUNT (NOT JUST +=)!!!!
+
 void CircleDraw::move(LDPoint newP)
 {
     std::for_each(perimeterPoints.begin(), perimeterPoints.end(), [&newP](LDPoint& p) { p += newP; });
     center += newP;
 }
 
+
 void CircleDraw::recenter()
 {
     std::for_each(perimeterPoints.begin(), perimeterPoints.end(), [&](LDPoint& p) { p += center; });
 }
+
 
 void CircleDraw::resize(int newRadius)
 {
@@ -30,6 +32,7 @@ void CircleDraw::resize(int newRadius)
     findPerimeterPoints();
     recenter();
 }
+
 
 void CircleDraw::draw()
 {
@@ -43,6 +46,7 @@ void CircleDraw::drawFill(SDL_Color col)
     SDL_SetRenderDrawColor(rendererCpy, col.r, col.g, col.b, 0xFF);
     SDL_RenderDrawLines(rendererCpy, &perimeterPoints[0], perimeterPoints.size());
 }
+
 
 int CircleDraw::decideNext(int prevYChangeDecision, LDPoint prevPoint)
 {
@@ -91,6 +95,7 @@ void CircleDraw::findPerimeterPoints()
     }
 }
 
+
 bool CircleDraw::isInsidePerimeter(LDPoint testPoint)
 {
     for (auto it = perimeterPoints.begin(); std::next(it) != perimeterPoints.end(); it++++)
@@ -103,7 +108,6 @@ bool CircleDraw::isInsidePerimeter(LDPoint testPoint)
 }
 
 
-
 void CircleDraw::logPerimeterPoints()
 {
     for (auto& point : perimeterPoints)
@@ -111,6 +115,7 @@ void CircleDraw::logPerimeterPoints()
         SDL_Log("(%i, %i)", point.x, point.y);
     }
 }
+
 
 void CircleDraw::handleEvent(SDL_Event* e)
 {

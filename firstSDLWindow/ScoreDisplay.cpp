@@ -3,20 +3,24 @@
 ScoreDisplay::ScoreBoard::ScoreBoard(SDL_Renderer* renderer) : pRenderer(renderer), totalScore(0)
 {};
 
+
 ScoreDisplay::ScoreBoard::~ScoreBoard()
 {
     pRenderer = nullptr;
 }
+
 
 const int ScoreDisplay::ScoreBoard::getTotalScore()
 {
     return totalScore;
 }
 
+
 void ScoreDisplay::ScoreBoard::setTotalScore(int newScore)
 {
     totalScore = newScore;
 }
+
 
 std::pair<int, int> ScoreDisplay::ScoreBoard::separateScore()
 {
@@ -41,6 +45,7 @@ void ScoreDisplay::ScoreBoard::draw()
     }
 }
 
+
 const LDPoint ScoreDisplay::SEG_POINTS[6] =
 {
     {SCREEN_WIDTH - SEGMENT_LENGTH - PADDING, PADDING},
@@ -62,6 +67,7 @@ const std::pair<LDPoint, LDPoint> ScoreDisplay::SEG_PAIRS[7] =
     { SEG_POINTS[5], SEG_POINTS[0] }, // TOP-LEFT  [5]
     { SEG_POINTS[5], SEG_POINTS[2] }, // MID       [6]
 };
+
 
 std::unordered_map<int, std::vector<std::pair<LDPoint, LDPoint>>> ScoreDisplay::numberMap =
 {

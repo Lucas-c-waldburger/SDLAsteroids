@@ -121,10 +121,8 @@ void BackgroundDecorations::StarMaker::randomizeStarLocations(int numStars = 15)
 		{
 			validLoc = true;
 			newLoc = randLoc();
-			//std::cout << newLoc << '\n';
 			for (auto& star : stars)
 			{
-				std::cout << dist(star, newLoc) << '\n';
 				if (dist(star, newLoc) < (MIN_DISTANCE_BETWEEN_STARS * MIN_DISTANCE_BETWEEN_STARS))
 				{
 					validLoc = false;
@@ -135,14 +133,5 @@ void BackgroundDecorations::StarMaker::randomizeStarLocations(int numStars = 15)
 
 		stars.emplace_back(newLoc);
 	} 
-
-	for (auto& star : stars)
-		std::cout << star.centerRect.x << ", " << star.centerRect.y << '\n';
-
-	//std::sort(stars.begin(), stars.end(), [](Star& s1, Star& s2)
-	//	{
-	//		return s1.centerRect.x < s1.centerRect.x;
-	//	});
-
 }
 

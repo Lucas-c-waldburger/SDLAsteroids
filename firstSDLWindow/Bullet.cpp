@@ -7,6 +7,7 @@ Bullet::Bullet(std::vector<LDPoint> currentBulletPathProjection) : path(currentB
     h = BULLET_HEIGHT;
 }
 
+
 void Bullet::updateRectXY()
 {
     x = path[pathIndex].x;
@@ -14,6 +15,7 @@ void Bullet::updateRectXY()
 }
 
 
+// BULLET GENERATOR //
 BulletGenerator::BulletGenerator(SDL_Renderer*& pRenderer) : pRendererRef(pRenderer), time({})
 {}
 

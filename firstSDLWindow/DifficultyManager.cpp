@@ -6,6 +6,7 @@ DifficultyManager::DifficultyManager() : scoreTierCurrentIndex(0)
 	std::generate(scoreTierCutoffs, scoreTierCutoffs + NUM_SCORE_TIERS, [&scoreTier]() { scoreTier += SCORE_TIER_AMOUNT; return scoreTier; });
 }
 
+
 void DifficultyManager::handleDifficulty(AsteroidGenerator& asteroidGenerator, ScoreDisplay::ScoreBoard& scoreBoard)
 {
 	if (shouldIncreaseDifficulty(scoreBoard.getTotalScore()))
@@ -15,6 +16,7 @@ void DifficultyManager::handleDifficulty(AsteroidGenerator& asteroidGenerator, S
 		++scoreTierCurrentIndex;
 	}
 }
+
 
 bool DifficultyManager::shouldIncreaseDifficulty(int currentScore)
 {

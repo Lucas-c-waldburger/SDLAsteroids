@@ -177,9 +177,6 @@
     <ClInclude Include="Utils.h" />
     <ClInclude Include="VelocityTime.h" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="storage.txt" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

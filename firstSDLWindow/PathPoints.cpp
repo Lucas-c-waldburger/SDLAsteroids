@@ -7,7 +7,7 @@ std::vector<LDPoint> PathPoints::makeSinglePath(LDPoint v1, LDPoint v2, int star
     int i = startingDistanceFromV1;
     LDPoint projectedPoint = LinePoints::extendLine(v1, v2, i);
 
-    while (LinePoints::pointWithinScreenBounds(projectedPoint)) // CONSOLIDATE & MOVE LINEPOINTS NAMESPACE FUNCS INTO SOMETHING BETTER
+    while (LinePoints::pointWithinScreenBounds(projectedPoint)) 
     {
         singlePath.push_back(projectedPoint);
         i += pixelDistanceBetweenPoints;

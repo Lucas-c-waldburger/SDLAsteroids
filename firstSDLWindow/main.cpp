@@ -52,17 +52,17 @@ int main(int argc, char* argv[])
                 const Uint8* keyStates = SDL_GetKeyboardState(nullptr);
                 ship.handleKeyStates(keyStates);
 
-                renderer.clear();
+                {
+                    renderer.clear();
 
-                starMaker.drawAll();
-                ship.draw();
-                ship.bulletGenerator.drawAll();
-                asteroidGenerator.drawAll();
-                scoreBoard.draw();
+                    starMaker.drawAll();
+                    ship.draw();
+                    ship.bulletGenerator.drawAll();
+                    asteroidGenerator.drawAll();
+                    scoreBoard.draw();
 
-
-
-                renderer.present();
+                    renderer.present();
+                }
             }
         }
     }

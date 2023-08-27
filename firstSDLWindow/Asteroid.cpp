@@ -3,10 +3,8 @@
 
 Asteroid::Asteroid(SDL_Renderer*& renderer, int r, LDPoint c, int numVerts) : CInscribedShape(renderer, r, c, numVerts), pathIndex(1), markedDestroy(false)
 {
-    int i = 0;
     do
     {
-        std::cout << "PATH DETERMINATION ATTEMPT #" << ++i << '\n';
         path.clear();
         LinePoints::generateLinePointsToEdge(center, randomizeStartingPerimeterPoint(), path, 1);
     } 
@@ -30,6 +28,7 @@ LDPoint Asteroid::randomizeStartingPerimeterPoint()
     return randomizedPerimeterPointForMoveDirection;
 }
 
+
 void Asteroid::moveForward(int speed)
 {
     LDPoint& nextPoint = path[pathIndex];
@@ -40,15 +39,17 @@ void Asteroid::moveForward(int speed)
 }
 
 
-
+// ASTEROID GENERATOR //
 AsteroidGenerator::AsteroidGenerator(SDL_Renderer* renderer) : pRenderer(renderer), asteroidRadius(MIN_ASTEROID_RADIUS), asteroidNumVertices(STARTING_NUM_VERTICIES),
 asteroidSpeed(STARTING_ASTEROID_SPEED), waitBetweenSpawn(STARTING_WAIT_BETWEEN_ASTEROID_SPAWN), maxAsteroidsOnScreen(STARTING_MAX_ASTEROIDS_ON_SCREEN), numDestroyed(0)
 {}
+
 
 AsteroidGenerator::~AsteroidGenerator()
 {
     pRenderer = nullptr;
 }
+
 
 LDPoint AsteroidGenerator::randomizeCenter()
 {
@@ -75,20 +76,21 @@ LDPoint AsteroidGenerator::randomizeCenter()
     return center;
 }
 
+
 int AsteroidGenerator::randomizeRadius()
 {
     return MIN_ASTEROID_RADIUS + (rand() % (MAX_ASTEROID_RADIUS_ADDITION + 1));
 }
+
 
 void AsteroidGenerator::makeAsteroid()
 {
     asteroids.emplace_back(pRenderer, randomizeRadius(), randomizeCenter(), asteroidNumVertices);
 }
 
+
 void AsteroidGenerator::drawAll()
 {
-    //    SDL_SetRenderDrawColor(pRenderer, 0, 0, 255, 255);
-
     handleSpawn();
 
     for (auto it = asteroids.begin(); it != asteroids.end(); it++)
@@ -97,6 +99,7 @@ void AsteroidGenerator::drawAll()
         it->draw();
     }
 }
+
 
 void AsteroidGenerator::handleSpawn()
 {
@@ -119,6 +122,7 @@ void AsteroidGenerator::setSpeed(int newSpeed)
     asteroidSpeed = newSpeed;
 }
 
+
 const int AsteroidGenerator::getNumDestroyed()
 {
     return numDestroyed;
@@ -130,20 +134,24 @@ void AsteroidGenerator::addToNumDestroyed(int amount)
     numDestroyed += amount;
 }
 
+
 const int AsteroidGenerator::getWaitBetweenSpawn()
 {
     return waitBetweenSpawn;
 }
+
 
 void AsteroidGenerator::setWaitBetweenSpawn(int amount)
 {
     waitBetweenSpawn = amount;
 }
 
+
 const int AsteroidGenerator::getMaxAsteroids()
 {
     return maxAsteroidsOnScreen;
 }
+
 
 void AsteroidGenerator::setMaxAsteroids(int amount)
 {
