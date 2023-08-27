@@ -87,6 +87,6 @@ Other features include
 - Scaling difficulty
 
 Recommended Setup
-- Just clone the repo and open the .sln in visual studio
+- gitclone the repo and open the .sln in visual studio
 
 ![SDL_Asteroids footage2](sdl_asteroids_gameplay_2.gif?raw=true "SDL_Asteroids_footage2")
