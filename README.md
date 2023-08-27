@@ -7,7 +7,7 @@ Each game object is a vector of points representing a circle. The top of the inh
 to approximate the perimeter points - sequentially determining the Y-axis change of each point within the first octant (yChangeDecision) and reflecting 
 the points around the circle.
 
-'''
+```
 void CircleDraw::findPerimeterPoints()
 {
     ...
@@ -17,8 +17,8 @@ void CircleDraw::findPerimeterPoints()
     while (perimeterPoints.back().x < perimeterPoints.back().y)
         yChangeDecision = decideNext(yChangeDecision, perimeterPoints.back());
 }
-'''
-'''
+```
+```
 int CircleDraw::decideNext(int prevYChangeDecision, LDPoint prevPoint)
 {
     ...
@@ -37,12 +37,12 @@ int CircleDraw::decideNext(int prevYChangeDecision, LDPoint prevPoint)
     reflectAndStore(LDPoint{ nextPoint.y, nextPoint.x }); reflectAndStore(nextPoint);
     return newYChangeDecision;
 }
-...
+```
 
 object movement is handled by populating another vector of path points through a line-approximation algorithm. The path is projected in its
 entirety (either forward or bi-directionally) and not recalculated unless the object is rotated.
 
-'''
+```
 std::vector<LDPoint> PathPoints::makeSinglePath(LDPoint v1, LDPoint v2, int startingDistanceFromV1, int pixelDistanceBetweenPoints)
 {
     ...
@@ -55,8 +55,8 @@ std::vector<LDPoint> PathPoints::makeSinglePath(LDPoint v1, LDPoint v2, int star
     }
     return singlePath;
 }
-'''
-'''
+```
+```
 std::vector<LDPoint> PathPoints::makeBiDirectionalPath(LDPoint v1, LDPoint v2, int startingDistanceFromV1, int pixelDistanceBetweenPoints)
 {
     std::vector<LDPoint> biDirectionalPath = makeSinglePath(v1, v2, 0, pixelDistanceBetweenPoints);
@@ -65,11 +65,11 @@ std::vector<LDPoint> PathPoints::makeBiDirectionalPath(LDPoint v1, LDPoint v2, i
     biDirectionalPath.insert(biDirectionalPath.end(), backwardPath.rbegin(), backwardPath.rend());
     return biDirectionalPath;
 }
-'''
+```
 
 Creating different n-sided shapes and rotating them is accomplished through subdividing the base circle's perimeter points into n-equal parts, keeping track of their relative position through a dynamic vector of indices, and rendering lines between them.
 
-'''
+```
 void CInscribedShape::init()
 {
     ...
@@ -78,7 +78,7 @@ void CInscribedShape::init()
     assignVertexIndexes();
     updateVertexPoints();
 }
-'''
+```
 
 Other features include
 - Score display
