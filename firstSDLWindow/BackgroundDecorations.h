@@ -9,6 +9,13 @@ const int NUM_STARS = 15, MIN_DISTANCE_BETWEEN_STARS = 55;
 
 namespace BackgroundDecorations
 {
+	struct Rand
+	{
+		static std::mt19937 getSeed();
+		static std::mt19937 randEng;
+		static int randInt(int low, int high);
+	};
+
 	struct StarLine
 	{
 		StarLine();
@@ -45,35 +52,6 @@ namespace BackgroundDecorations
 		void randomizeStarLocations(int numStars);
 
 	};
-
-	//struct Star
-	//{
-	//	Star(SDL_Renderer* renderer, int r, LDPoint c);
-
-	//	CircleDraw centerCircle;
-	//	SpikeLine spikes[4];
-
-	//	void draw(SDL_Renderer* renderer);
-
-	//	void makeSpikeLines (int spikeLength);
-	//};
-
-	//class StarMaker
-	//{
-	//public:
-	//	StarMaker(SDL_Renderer* renderer);
-	//	~StarMaker();
-
-	//	void makeStars(int numStars);
-	//	void drawStars();
-
-	//private:
-	//	SDL_Renderer* pRenderer;
-	//	std::vector<Star> stars;
-	//};
-
-
-
 
 
 };
