@@ -9,13 +9,6 @@ const int NUM_STARS = 15, MIN_DISTANCE_BETWEEN_STARS = 55;
 
 namespace BackgroundDecorations
 {
-	struct Rand
-	{
-		static std::mt19937 getSeed();
-		static std::mt19937 randEng;
-		static int randInt(int low, int high);
-	};
-
 	struct StarLine
 	{
 		StarLine();
